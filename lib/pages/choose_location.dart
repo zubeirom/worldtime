@@ -22,17 +22,37 @@ class _ChooseLocationState extends State<ChooseLocation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.blue[900],
         title: Text('Choose a Location'),
         centerTitle: true,
         elevation: 0,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+        ),
       ),
-      body: RaisedButton(
-        onPressed: () {
+      body: ListView.builder(
+        itemCount: locations.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 4),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+              ),
+              child: ListTile(
+                onTap: () {
+
+                },
+                title: Text(locations[index].location),
+                leading: CircleAvatar(
+                  backgroundImage: AssetImage('assets/${locations[index].flag}'),
+                )
+              ),
+            ),
+          );
         },
-      ),
+      )
     );
   }
 }
